@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product Details</title>
+</head>
+<body>
+   <form method="post" class="forms-sample" action="{% url 'update_product' updateid=edit.id %}" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Select Category</label>
+                    <select name="select">
+                      <option>{{edit.Select_Product}}</option>
+                      {% for i in cat %}
+                      <option>{{i.CatName}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+    </div>
+    <div class="col-12 grid-margin stretch-card">
+    <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" class="form-control" placeholder="Category Name" name="pname" value="{{edit.Product_Name}}">
+    </div>
+     <div class="form-group">
+         <label for="exampleTextarea1">Description</label>
+         <textarea class="form-control" id="exampleTextarea1" rows="4" name="description">{{edit.Description}}</textarea>
+     </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control"placeholder="Category Name" name="price" value="{{edit.Price}}">
+    </div>
+    <div class="form-group">
+        <label>Image upload</label>
+        <input type="file" name="image">
+        <img src="{{edit.Image.url}}" width="100px;" height="100px;">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary mr-2">Update</button>
+</form>
+</body>
+</html>
+{% endblock %}

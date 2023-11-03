@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+   <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Category</h4>
+                  <form method="post" class="forms-sample" action="{% url 'updatecat' updateid=edit.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Category Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Category Name" name="catname" value="{{edit.CatName}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="description">{{edit.CatDes}}</textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Image upload</label>
+                      <img src="{{edit.CatImg.url}}" width="150px;" height="100px;">
+                      <input type="file" name="image">
+<!--                      <div class="input-group col-xs-12">-->
+<!--                        <input type="file" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="submit">Upload</button>-->
+<!--                        </span>-->
+<!--                      </div>-->
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+</body>
+</html>
+{% endblock %}
